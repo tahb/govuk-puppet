@@ -38,7 +38,7 @@ class govuk::apps::whitehall(
     nagios_cpu_critical    => 400,
     nagios_memory_warning  => $nagios_memory_warning,
     nagios_memory_critical => $nagios_memory_critical,
-    unicorn_herder_timeout => 45,
+    unicorn_herder_timeout => '45',
     require                => Package['unzip'],
   }
 
