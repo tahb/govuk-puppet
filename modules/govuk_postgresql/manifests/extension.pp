@@ -22,7 +22,7 @@ define govuk_postgresql::extension {
             command => "psql -d ${db} -c 'CREATE EXTENSION IF NOT EXISTS ${extension}'",
             unless  => "psql -d ${db} -c '\\dx' | grep -q ${extension}",
             user    => 'postgres',
-            require => [Class['postgresql::server::contrib'], Postgresql::Server::Db[$db]],
+            require => [Class['postgresql::server::contrib'], Postgresql::Server::Database[$db]],
         }
     }
 }
