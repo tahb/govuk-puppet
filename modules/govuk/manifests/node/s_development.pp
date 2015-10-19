@@ -215,6 +215,14 @@ class govuk::node::s_development {
       createdb      => true;
   }
 
+  class { 'postgresql::server::postgis': }
+
+  postgresql::server::database { 'mapit':
+    owner => 'vagrant',
+  }
+
+  govuk_postgresql::extension { 'mapit:postgis': }
+
   package {
     'sqlite3':        ensure => 'installed'; # gds-sso uses sqlite3 to run its test suite
     'wbritish-small': ensure => installed;
