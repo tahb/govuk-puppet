@@ -5,12 +5,6 @@
 #
 # The title of this resource must be the name of the database and the
 # extension to load into it, colon separated
-#
-# === Parameters
-#
-# [*db*]
-# The database to install the extension for
-#
 define govuk_postgresql::extension {
     $extracted_title = split($title,':')
     if (size($extracted_title) < 2) {
