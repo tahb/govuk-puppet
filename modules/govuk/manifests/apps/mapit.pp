@@ -8,13 +8,9 @@
 # [*port*]
 #   What port should the app run on?
 #
-# [*db_password*]
-#   The password for the mapit postgresql role
-#
 class govuk::apps::mapit (
   $enabled = false,
   $port    = '3108',
-  $db_password,
 ) {
   if $enabled {
     govuk::app { 'mapit':
@@ -23,12 +19,6 @@ class govuk::apps::mapit (
       vhost_ssl_only     => true,
       health_check_path  => '/',
       log_format_is_json => false;
-    }
-
-    govuk_postgresql::db { 'mapit':
-      user       => 'mapit',
-      password   => $db_password,
-      extensions => ['plpgsql', 'postgis'],
     }
 
     package {
