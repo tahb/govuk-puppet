@@ -5,19 +5,16 @@
     project-type: freestyle
     description: "This job should be used to send a passive check to Icinga with a SUCCESS
       status. As such this should only be used as a triggered build for a stable (or related)
-      condition."
+      condition. Put the job name and success condition in the parameter."
     builders:
       - shell: |
           IPADDRESS=$(facter ipaddress)
           NSCA_CODE=0
-          printf "$IPADDRESS\t$NSCA_CHECK_DESCRIPTION\t$NSCA_CODE\t$NSCA_OUTPUT\n" | /usr/sbin/send_nsca -H alert.cluster >/dev/null
+          printf "$IPADDRESS\tJenkins Job Success\t$NSCA_CODE\t$NSCA_OUTPUT\n" | /usr/sbin/send_nsca -H alert.cluster >/dev/null
     wrappers:
         - ansicolor:
             colormap: xterm
     parameters:
-        - string:
-            name: NSCA_CHECK_DESCRIPTION
-            description: 'Descriptive name of job triggering this alert'
         - string:
             name: NSCA_OUTPUT
             description: 'Description for the condition of the success'
