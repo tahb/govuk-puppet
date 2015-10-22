@@ -28,6 +28,14 @@ class govuk::node::s_elasticsearch inherits govuk::node::s_base {
     instances  => $::fqdn,
   }
 
+  # ES 1.4 needs v2.4.2 of this plugin
+  # See: https://github.com/elastic/elasticsearch-cloud-aws/tree/v2.4.2#version-242-for-elasticsearch-14
+  elasticsearch::plugin { 'elastic/elasticsearch-cloud-aws':
+    module_dir => 'cloud-aws',
+    url        => 'https://github.com/elastic/elasticsearch-cloud-aws/archive/v2.4.2.zip',
+    instances  => $::fqdn,
+  }
+
   collectd::plugin::tcpconn { 'es-9200':
     incoming => 9200,
     outgoing => 9200,

@@ -36,6 +36,7 @@ class govuk_elasticsearch (
   $disable_gc_alerts = false,
   $manage_repo = true,
   $open_firewall_from_all = true,
+  $environment_config = {},
 ) {
 
   validate_re($version, '^\d+\.\d+\.\d+$', 'govuk_elasticsearch::version must be in the form x.y.z')
@@ -105,8 +106,10 @@ class govuk_elasticsearch (
     $instance_config_real = $instance_config
   }
 
+  $config = merge($instance_config_real, $environment_config)
+
   elasticsearch::instance { $::fqdn:
-    config        => $instance_config_real,
+    config        => $config,
     datadir       => '/mnt/elasticsearch',
     init_defaults => {
       'ES_HEAP_SIZE' => $heap_size,
@@ -138,6 +141,8 @@ class govuk_elasticsearch (
   govuk_elasticsearch::firewall_transport_rule { $cluster_hosts: }
 
   include govuk_elasticsearch::estools
+
+  elasticsearch::python { 'elasticsearch': }
 
   anchor { 'govuk_elasticsearch::end': }
 }

@@ -46,6 +46,14 @@ class govuk::node::s_logs_elasticsearch(
     instances  => $::fqdn,
   }
 
+  # ES 1.4 needs v2.4.2 of this plugin
+  # See: https://github.com/elastic/elasticsearch-cloud-aws/tree/v2.4.2#version-242-for-elasticsearch-14
+  elasticsearch::plugin { 'elastic/elasticsearch-cloud-aws':
+    module_dir => 'cloud-aws',
+    url        => 'https://github.com/elastic/elasticsearch-cloud-aws/archive/v2.4.2.zip',
+    instances  => $::fqdn,
+  }
+
   # Install a template with some favourable settings for storing logging data.
   elasticsearch::template { 'wildcard':
     file    => 'puppet:///modules/govuk/node/s_logs_elasticsearch/wildcard-template.json',
