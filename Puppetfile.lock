@@ -31,6 +31,9 @@ FORGE
       puppetlabs-stdlib (>= 1.0.0)
     maestrodev-wget (1.5.0)
     nanliu-staging (1.0.3)
+    puppet-nodejs (1.2.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.1.0)
+      treydock-gpg_key (< 1.0.0, >= 0.0.3)
     puppetlabs-apt (1.7.0)
       puppetlabs-stdlib (>= 2.2.1)
     puppetlabs-concat (1.1.0)
@@ -67,6 +70,7 @@ FORGE
       puppetlabs-stdlib (< 6.0.0, >= 4.6.0)
       stahnma-epel (< 2.0.0, >= 1.0.1)
     thias-sysctl (0.3.2)
+    treydock-gpg_key (0.0.3)
 
 GIT
   remote: git://github.com/alphagov/puppet-apparmor.git
@@ -175,6 +179,15 @@ GIT
     KyleAnderson-etcd (0.4.2)
       puppetlabs-stdlib (>= 3.2.0)
 
+GIT
+  remote: git@github.com:evenup/evenup-hubot.git
+  ref: master
+  sha: b867d868ca750ab9e798f068a1a8b7c6e385dde7
+  specs:
+    evenup-evenup-hubot (0.2.0)
+      puppet-nodejs (< 2.0.0, >= 1.0.0)
+      puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
+
 DEPENDENCIES
   KyleAnderson-etcd (>= 0)
   adrien-alternatives (>= 0)
@@ -189,6 +202,7 @@ DEPENDENCIES
   camptocamp-augeas (= 1.1.0)
   elasticsearch-elasticsearch (>= 0)
   elasticsearch-logstash (>= 0)
+  evenup-evenup-hubot (>= 0)
   fsalum-redis (>= 0)
   gdsoperations-aptly (>= 0)
   gdsoperations-auditd (= 0.2.0)

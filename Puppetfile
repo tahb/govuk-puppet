@@ -28,6 +28,10 @@ mod 'goldyfruit/grub2',
   :git => 'git://github.com/goldyfruit/puppet-grub2.git',
   :ref => 'a55113eeb2cfe8ff92307eddd10c4f8b3a78bb73'
 
+mod 'evenup/evenup-hubot',
+  :git => 'git@github.com:evenup/evenup-hubot.git',
+  :ref => 'master'
+
 # using git version because we need 93a1765bc09
 # which isn't in 0.2.2 (current latest, 2013-11-13)
 mod 'nextrevision/automysqlbackup',
