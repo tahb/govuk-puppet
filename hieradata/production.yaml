@@ -631,6 +631,30 @@ monitoring::checks::mirror::enabled: true
 monitoring::checks::ses::critical: 50
 monitoring::checks::ses::region: us-east-1
 monitoring::checks::ses::warning: 30
+monitoring::checks::sidekiq_retries::apps:
+  check_imminence_retries:
+    desc: 'Imminence sidekiq retries'
+    target: 'stats.gauges.govuk.app.imminence.workers.retry_set_size'
+  check_publisher_retries:
+    desc: 'Publisher sidekiq retries'
+    target: 'stats.gauges.govuk.app.publisher.workers.retry_set_size'
+  check_rummager_retries:
+    desc: 'Rummager sidekiq retries'
+    target: 'stats.gauges.govuk.app.rummager.workers.retry_set_size'
+  check_signon_retries:
+    desc: 'Signon sidekiq retries'
+    target: 'stats.gauges.govuk.app.signon.workers.retry_set_size'
+  check_support_retries:
+    desc: 'Publisher sidekiq retries'
+    target: 'stats.gauges.govuk.app.support.workers.retry_set_size'
+  check_support-api_retries:
+    desc: 'Support API sidekiq retries'
+    target: 'stats.gauges.govuk.app.support-api.workers.retry_set_size'
+  check_whitehall_retries:
+    desc: 'Whitehall sidekiq retries'
+    target: 'stats.gauges.govuk.app.whitehall.workers.retry_set_size'
+    warning: 30
+    critical: 50
 monitoring::contacts::notify_graphite: true
 monitoring::contacts::notify_pager: true
 monitoring::contacts::notify_slack: true
