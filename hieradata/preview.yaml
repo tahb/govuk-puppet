@@ -35,6 +35,7 @@ govuk::apps::service_manual_publisher::enabled: true
 govuk::apps::signon::enable_logstream: true
 govuk::apps::smartanswers::expose_govspeak: true
 govuk::apps::specialist_publisher::publish_pre_production_finders: true
+govuk::apps::whitehall_admin_tagging_test::enabled: true
 
 govuk::deploy::aws_ses_smtp_host: 'email-smtp.eu-west-1.amazonaws.com'
 govuk::deploy::config::errbit_environment_name: 'preview'

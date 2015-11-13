@@ -115,6 +115,7 @@ class govuk::node::s_development {
   include govuk::apps::travel_advice_publisher
   include govuk::apps::url_arbiter
   include govuk::apps::whitehall
+  include govuk::apps::whitehall_admin_tagging_test
 
   include govuk_java::openjdk7::jdk
   include govuk_java::openjdk7::jre

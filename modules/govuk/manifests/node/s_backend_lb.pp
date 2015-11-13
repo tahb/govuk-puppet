@@ -60,7 +60,10 @@ class govuk::node::s_backend_lb (
     ]:
       https_only    => false, # FIXME: Remove for #51136581
       internal_only => true;
-    'whitehall-admin':
+    [
+      'whitehall-admin',
+      'whitehall-admin-tagging-test',
+    ]:
       https_only => false, # FIXME: Remove for #51136581
       servers    => $whitehall_backend_servers;
   }
