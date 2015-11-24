@@ -103,7 +103,6 @@ govuk::apps::whitehall::enable_procfile_worker: false
 govuk::apps::whitehall::prevent_single_host: false
 govuk::apps::whitehall::vhost_protected: false
 govuk::apps::whitehall_admin_tagging_test::configure_admin: true
-govuk::apps::whitehall_admin_tagging_test::configure_frontend: true
 govuk::apps::whitehall_admin_tagging_test::enable_procfile_worker: false
 govuk::apps::whitehall_admin_tagging_test::prevent_single_host: false
 govuk::apps::whitehall_admin_tagging_test::vhost_protected: false
@@ -231,8 +230,6 @@ hosts::development::apps:
   - 'whitehall-admin'
   - 'whitehall-frontend'
   - 'whitehall'
-  - 'whitehall-admin-tagging-test-admin'
-  - 'whitehall-admin-tagging-test-frontend'
   - 'whitehall-admin-tagging-test'
   - 'www'
 

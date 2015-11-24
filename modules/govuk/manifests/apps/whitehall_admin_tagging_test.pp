@@ -3,7 +3,7 @@
 #                          and this flag is not set in hiera
 class govuk::apps::whitehall_admin_tagging_test(
   $vhost = 'whitehall-admin-tagging-test',
-  $port = '3020',
+  $port = '3115',
   $configure_frontend = false,
   $configure_admin = false,
   $vhost_protected,
@@ -40,23 +40,6 @@ class govuk::apps::whitehall_admin_tagging_test(
     nagios_memory_critical => $nagios_memory_critical,
     unicorn_herder_timeout => 45,
     require                => Package['unzip'],
-  }
-
-  if $configure_frontend == true {
-
-    govuk::app::nginx_vhost { 'whitehall-admin-tagging-test-frontend':
-      vhost                 => "whitehall-admin-tagging-test-frontend.${app_domain}",
-      protected             => $vhost_protected,
-      app_port              => $port,
-      asset_pipeline        => true,
-      asset_pipeline_prefix => 'government/assets',
-      nginx_extra_config    => "
-      location /government/uploads {
-        proxy_set_header Host 'whitehall-admin-tagging-test-admin.${app_domain}';
-        proxy_pass https://whitehall-admin-tagging-test-admin.${app_domain};
-      }
-      "
-    }
   }
 
   if $configure_admin == true {

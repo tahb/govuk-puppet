@@ -599,6 +599,7 @@ hosts::production::backend::app_hostnames:
   - 'travel-advice-publisher'
   - 'url-arbiter'
   - 'whitehall-admin'
+  - 'whitehall-admin-tagging-test'
 
 hosts::production::frontend::hosts:
   calculators-frontend-1:
