@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'open-uri'
+
+cluster_health = JSON.parse(open('http://localhost:9200/_cluster/health').read)
+
+if cluster_health['status'] != 'green'
+  exit(1)
+end
