@@ -16,7 +16,6 @@ class govuk::node::s_base (
   include base
   include fail2ban
   include govuk::firewall
-  include govuk::safe_to_reboot
   include govuk_rbenv
   include govuk_unattended_reboot
   include grub2
