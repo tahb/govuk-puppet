@@ -7,10 +7,15 @@
 # [*apps*]
 #   An array of GOV.UK applications that should be included on this machine.
 #
+# [*logstreams*]
+#   A hash of `govuk::logstream` resources to create.
+#
 class govuk::node::s_base (
   $apps = [],
+  $logstreams = {},
 ) {
   validate_array($apps)
+  validate_hash($logstreams)
 
   include base
   include fail2ban
@@ -70,30 +75,7 @@ class govuk::node::s_base (
     matches => '/var/log/govuk/*.log',
   }
 
-  govuk::logstream {
-    'apt-history':
-      logfile => '/var/log/apt/history.log',
-      tags    => ['history'],
-      fields  => {'application' => 'apt'};
-    'apt-term':
-      logfile => '/var/log/apt/term.log',
-      tags    => ['term'],
-      fields  => {'application' => 'apt'};
-    'dpkg':
-      logfile => '/var/log/dpkg.log',
-      fields  => {'application' => 'dpkg'};
-    'unattended-upgrades':
-      logfile => '/var/log/unattended-upgrades/unattended-upgrades.log',
-      tags    => ['unattended'],
-      fields  => {'application' => 'apt'};
-    'unattended-upgrades-shutdown':
-      logfile => '/var/log/unattended-upgrades/unattended-upgrades-shutdown.log',
-      tags    => ['unattended'],
-      fields  => {'application' => 'apt'};
-    'rkhunter':
-      logfile => '/var/log/rkhunter.log',
-      fields  => {'application' => 'rkhunter'};
-  }
+  create_resources('govuk::logstream', $logstreams)
 
   # Remove user on first Puppet run after bootstrapping.
   user { 'ubuntu':
