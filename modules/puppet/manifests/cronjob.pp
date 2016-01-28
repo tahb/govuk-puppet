@@ -1,14 +1,25 @@
-# FIXME: This class needs better documentation as per https://docs.puppetlabs.com/guides/style_guide.html#puppet-doc
-class puppet::cronjob {
+# == Class: puppet::cronjob
+#
+# === Parameters
+#
+# [*enabled*]
+#   Boolean indicating whether a cronjob should be set up.
+#
+class puppet::cronjob (
+  $enabled = true,
+) {
+  validate_bool($enabled)
 
-  $first = fqdn_rand(30)
-  $second = $first + 30
+  if $enabled {
+    $first = fqdn_rand(30)
+    $second = $first + 30
 
-  cron { 'puppet':
-    ensure  => present,
-    user    => 'root',
-    minute  => [$first, $second],
-    command => '/usr/local/bin/govuk_puppet',
-    require => File['/usr/local/bin/govuk_puppet'],
+    cron { 'puppet':
+      ensure  => present,
+      user    => 'root',
+      minute  => [$first, $second],
+      command => '/usr/local/bin/govuk_puppet',
+      require => File['/usr/local/bin/govuk_puppet'],
+    }
   }
 }
