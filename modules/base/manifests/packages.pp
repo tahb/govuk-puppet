@@ -43,6 +43,12 @@ class base::packages (
 
   create_resources('package', $gems, { provider => 'gem' })
 
+  # whoopsie is the ubuntu crash reporter. We don't want to be running any
+  # software that sends data from our machines to 3rd-party services. Remove it.
+  package { 'whoopsie':
+    ensure => purged,
+  }
+
   # FIXME: Remove `alternatives` resource once we've stopped using Precise
   if $::lsbdistcodename == 'precise' {
     alternatives { 'ruby':

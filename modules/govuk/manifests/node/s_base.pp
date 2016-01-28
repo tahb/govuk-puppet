@@ -95,12 +95,6 @@ class govuk::node::s_base (
       fields  => {'application' => 'rkhunter'};
   }
 
-  # whoopsie is the ubuntu crash reporter. We don't want to be running any
-  # software that sends data from our machines to 3rd-party services. Remove it.
-  package { 'whoopsie':
-    ensure => purged,
-  }
-
   # Remove user on first Puppet run after bootstrapping.
   user { 'ubuntu':
     ensure => absent,
