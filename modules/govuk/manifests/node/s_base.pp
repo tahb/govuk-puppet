@@ -12,7 +12,6 @@ class govuk::node::s_base (
 ) {
   validate_array($apps)
 
-  include backup::client
   include base
   include fail2ban
   include govuk::firewall

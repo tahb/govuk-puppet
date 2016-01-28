@@ -7,6 +7,7 @@ class base {
   include apparmor
   include apt
   include apt::unattended_upgrades
+  include backup::client
   include base::packages
   include base::supported_kernel
   include cron
