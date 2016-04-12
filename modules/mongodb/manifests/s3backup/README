@@ -1,0 +1,43 @@
+# mongodb::s3backup
+
+#### Table of Contents
+
+1. [Description](#description)
+2. [Setup - The basics of getting started with [modulename]](#setup)
+    * [What [modulename] affects](#what-[modulename]-affects)
+    * [Setup requirements](#setup-requirements)
+3. [Usage - Configuration options and additional functionality](#usage)
+4. [Limitations - OS compatibility, etc.](#limitations)
+
+## Description
+This module backs up a mongodb server, compresses and encrypts the backup directory, and pushes to AWS S3.
+
+The idea is to run this script at regular intervals as part of a DR strategy.
+
+## Setup
+
+### What [modulename] affects
+
+This module installs a few python dependencies
+
+### Setup Requirements
+
+It is expected that you have completed the setup requirements before configuring this module:
+
+- created an AWS S3 bucket to contain the backups
+- created a GPG secret key to your security requirements
+- created AWS credentials with the ability to read and write to the AWS S3 bucket
+
+## Usage
+
+The module requires two parameters to be specified and can use defaults for all others:
+- private_gpg_key
+- private_gpg_key_fingerprint
+
+The user running the script will need AWS credentials specified either as environment variables or via an AWS config file
+* AWS_ACCESS_KEY
+* AWS_SECRET_ACCESS_KEY
+
+## Limitations
+
+This module has only been tested on Ubuntu 14.04

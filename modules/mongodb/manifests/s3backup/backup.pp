@@ -1,4 +1,40 @@
+# == Class: mongodb::s3backup::backup
 #
+# Backup a MongoDB server to AWS S3
+#
+# === Parameters:
+#
+# [*dir*]
+#   Defines the directory to dump the backups
+#
+# [*private_gpg_key*]
+#   Defines the ascii exported private gpg to
+#   use for encrypting backups. This key should
+#   be created by the user and encrypted with eyaml
+#
+# [*private_gpg_key_fingerprint*]
+#   Defines the fingerprint of the gpg private
+#   key to encrypt the backups. The fingerprint
+#   should be 40 characters without spaces
+#
+# [*s3_bucket*]
+#   Defines the AWS S3 bucket where the backups
+#   will be uploaded. It should be created by the
+#   user
+#
+# [*server*]
+#   Defines the server to connect to. The backup
+#   script will pick a secondary to backup, unless
+#   'standalone' is 'True'
+#
+# [*standalone*]
+#   If true, will backup localhost instead of a 
+#   Secondary
+#
+# [*user*]
+#   Defines the system user that will be created
+#   to run the backups
+
 class mongodb::s3backup::backup(
   $dir = '/var/lib/s3backup',
   $private_gpg_key = undef,
