@@ -107,4 +107,8 @@ class mongodb::server (
       'mongodb::configure_replica_set'
     ],
   }
+
+  include mongodb::s3backup::backup
+  include mongodb::s3backup::package
+
 }
